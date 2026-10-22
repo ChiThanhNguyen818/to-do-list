@@ -6,7 +6,7 @@ on:
     branches:
       - main
     paths:
-      - 'to-do-list/**'
+      - 'To do list/**'
       - '.github/workflows/deploy.yml'
   workflow_dispatch:
 
