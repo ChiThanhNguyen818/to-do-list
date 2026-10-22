@@ -113,10 +113,9 @@ button:active {
 .task-item {
     display: grid;
     grid-template-columns: 1fr 2fr 2fr 1fr 2fr;
-    gap: 24px;
+    gap: 16px;
     align-items: center;
-    padding-top: 12px 0;
-    padding-bottom: 12px 0;
+    padding: 12px 0;
     border-bottom: 2px solid #E2E8F0;
 }
 /* Animation cho phần checkbox */
@@ -125,12 +124,21 @@ button:active {
     height: 21px;
     cursor: pointer;
 }
+.task-header > *,
+.task-item > * {
+    min-width: 0;
+}
 [data-field="status"] {
-    display:inline-block;
+    display:inline-flex;
+    justify-self: start;
+    align-items:center;
+    width: fit-content;
+    gap: 6px;
     padding: 5px 12px;
     border-radius: 999px;
     font-size: 12px;
     font-weight: 600;
+    line-height: 1;
     transition: 0.2s ease;
 }
 .task-pending {
@@ -140,6 +148,36 @@ button:active {
 .task-completed {
     background-color: #DCFCE7;
     color: #166534;
+}
+[data-field="description"] {
+    width: 100%;
+    min-width: 0;              /* quan trọng: cho phép co lại trong ô grid */
+    max-width: 100%;
+    box-sizing: border-box;    /* padding + border nằm trong width 100% */
+    padding: 8px 10px;
+    border: 1px solid var(--task-border);
+    border-radius: 8px;
+    background: transparent;
+    font: inherit;
+    font-size: 14px;
+    color: inherit;
+    text-overflow: ellipsis;   /* hiện "…" khi chữ dài hơn ô */
+    white-space: nowrap;
+    overflow: hidden;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+[data-field="description"]:focus {
+    outline: none;
+    border-color: #3B82F6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+    text-overflow: clip;       /* khi gõ thì không hiện "…" nữa */
+}
+
+/* Nếu chỉ hiển thị, không cho sửa */
+[data-field="description"][readonly] {
+    border-color: transparent;
+    cursor: default;
 }
 /* Animation appear kiểu up to bottom */
 .task-item {
