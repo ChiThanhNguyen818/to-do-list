@@ -1,0 +1,202 @@
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 24px;
+    gap: 32px;
+    background: #F8FAFC;
+    color: #0F172A;
+}
+header {
+    width: 100%;
+    max-width: 320px;
+}
+main {
+    width: 100%;
+    max-width: 900px;
+}
+/*Form của task */
+#task-form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 24px;
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.08);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.9);
+}
+#task-form button {
+    background: linear-gradient(135deg, #6366F1, #4F46E5);
+    background-size: 200% auto;
+    color: #fff;
+    border: none;
+    padding: 12px 28px;
+    font-size: large;
+}
+/* input + label -> style floating */
+.input-group {
+    position: relative;
+    width: 100%;
+    background: #FFFFFF;
+}
+.input-group input {
+    width: 100%;
+    padding: 20px 0 8px;
+    border: none;
+    border-bottom: 2px solid #CBD5E1;
+    outline: none;
+    background: transparent;
+    color: #0F172A;
+}
+.input-group label {
+    position: absolute;
+    font-size: 16px;
+    top: 20px;
+    left: 0px;
+    color: #64748B;
+    transition: 0.3s;
+    pointer-events: none;
+}
+.input-group input:focus+label, .input-group input:not(:placeholder-shown)+label{
+    top: 0;
+    color: #4F46E5;
+    font-size: 14px;
+}
+.input-group .underlined {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    width: 100%;
+    background-color: #4F46E5;
+    transition: 0.3s;
+    transform: scaleX(0);
+}
+.input-group input:focus~.underlined, .input-group input:not(:placeholder-shown)~.underlined {
+    transform:scaleX(1);
+}
+/* Animation cho button */
+button {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.18);
+    border: none;
+    border-radius: 10px;
+}
+button:hover {
+    transform: translateY(-2px);
+}
+button:active {
+    transform: translateY(0px);
+}
+/* CSS cho phần my Tasks */
+.task-section {
+    border: 1px solid #E2E8F0;
+    border-radius: 8px;
+    padding: 16px;
+    overflow-x: auto;
+    background: #FFFFFF;
+}
+.task-table {
+    min-width: 600px;
+}
+.task-header {
+    display: grid;
+    grid-template-columns: 1fr 2fr 2fr 1fr 2fr;
+    gap: 16px;
+    border-bottom: 2px solid #E2E8F0;
+    padding-bottom: 12px;
+}
+.task-item {
+    display: grid;
+    grid-template-columns: 1fr 2fr 2fr 1fr 2fr;
+    gap: 24px;
+    align-items: center;
+    padding-top: 12px 0;
+    padding-bottom: 12px 0;
+    border-bottom: 2px solid #E2E8F0;
+}
+/* Animation cho phần checkbox */
+.task-checkbox {
+    width: 21px;
+    height: 21px;
+    cursor: pointer;
+}
+[data-field="status"] {
+    display:inline-block;
+    padding: 5px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    transition: 0.2s ease;
+}
+.task-pending {
+    background-color: #FEF3C7;
+    color: #92400E;
+}
+.task-completed {
+    background-color: #DCFCE7;
+    color: #166534;
+}
+/* Animation appear kiểu up to bottom */
+.task-item {
+    animation: taskAppear 0.3s ease;
+}
+@keyframes taskAppear{
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/* CSS cho phần edit-form */
+#edit-dialog {
+    width: 440px;
+    max-width: calc(100% - 32px);
+    height: fit-content;
+    max-height: 80vh;
+
+    padding: 24px;
+    margin: auto;
+
+    border: none;
+    border-radius: 12px;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+#edit-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+}
+
+#edit-dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+}
+.edit-actions {
+    display: flex;
+    justify-content: right;
+    align-items: right;
+}
+.edit-actions button {
+    padding: 8px;
+}
+.edit-actions #cancel-btn {
+    margin-right: 8px;
+    background: red;
+    color: #fff;
+}
+.edit-actions #save-btn {
+    background: linear-gradient(135deg, #6366F1, #4F46E5);
+    color: #fff;
+}
